@@ -1,0 +1,33 @@
+{
+  "skill_name": "gitlab-cli",
+  "evals": [
+    {
+      "id": 1,
+      "name": "self-hosted-multi-instance-setup",
+      "prompt": "我们公司内部有个自建的 GitLab，地址是 https://git.acme-corp.local，签的是公司自己的根证书。我刚装好 glab，但 git.acme-corp.local 用的是 HTTP 不是 HTTPS（运维一直说要改一直没改）。我想从命令行操作这个内部 GitLab 上的项目，比如 platform/infra/k8s-cluster。同时我自己 GitHub 账号下也有个 gitlab.com 上的小项目想偶尔操作下。给我一份完整的配置和使用思路，包括登录、host 切换、证书处理、HTTP 协议这些坑都要覆盖到。",
+      "expected_output": "应当覆盖：(1) 用 glab auth login --hostname 分别登录两个 host；(2) 自托管设置 api_protocol=http；(3) 自签证书要么导入系统根证书要么 skip_tls_verify；(4) 多 host 切换的三种方式（GITLAB_HOST 环境变量、-R 参数、config set host）；(5) 多级 group 路径写法 platform/infra/k8s-cluster；(6) 不要让用户去网页配置",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "ci-pipeline-failure-debug",
+      "prompt": "我刚 push 了一个 feature 分支 feat/payment-refactor 到我们公司 GitLab，CI 流水线红了。我现在想：(1) 看下 pipeline 整体状态；(2) 找到具体是哪个 job 失败了；(3) 看那个失败 job 的完整日志；(4) 如果只是网络抖动想直接重试这个 job；(5) 如果是 yml 文件问题，本地怎么校验我刚改的 .gitlab-ci.yml？给我一个完整的命令清单。",
+      "expected_output": "应当包含：glab ci status（看状态）、glab ci list 或 view（看 job 列表）、glab ci trace（看日志）、glab ci retry <job-id>（重试）、glab ci lint（校验 yml）。不应让用户去浏览器点。最好能体现交互流程，例如 trace 是交互式选 job 的。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "mr-review-workflow",
+      "prompt": "现在指派给我评审的 MR 应该有好几个，我想：(1) 列出所有让我评审的 open MR；(2) 把其中一个 checkout 到本地跑一下；(3) 在终端里看 diff 和已有评论；(4) 加一条评论说 'LGTM, 但建议把 magic number 提取成常量'；(5) 最后批准并合并（用 squash 模式 + 合并后删除源分支）。",
+      "expected_output": "应当涵盖：glab mr list --reviewer @me、glab mr checkout、glab mr diff 和 view --comments、glab mr note -m、glab mr approve、glab mr merge --squash --remove-source-branch。命令应该是可直接复制使用的形式。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "advanced-api-batch-operation",
+      "prompt": "我需要批量操作：在我们 GitLab 自建实例 (git.acme-corp.local) 的 platform group 下，所有项目里搜索我自己作为 author 创建的、还在 opened 状态的 MR，提取 IID 和 web_url 列表。glab 有没有现成命令？如果没有，怎么用 glab 走 API 实现？要能处理分页（项目可能很多）。",
+      "expected_output": "应当指出：(1) glab mr list 默认是当前仓库；(2) 跨项目要用 glab api；(3) 用 /merge_requests?scope=created_by_me&state=opened；(4) 配合 --paginate 处理分页；(5) 用 jq 提取字段；(6) 临时切到自托管 host（GITLAB_HOST 或 -R 或 default host）",
+      "files": []
+    }
+  ]
+}

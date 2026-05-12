@@ -1,0 +1,83 @@
+[
+  {
+    "query": "我们公司内部 GitLab 升级了，升级后我之前的 PAT 还能用吗？怎么验证下我的 glab 还能正常调用 API",
+    "should_trigger": true
+  },
+  {
+    "query": "刚把这个 feature 分支推上去，麻烦帮我提个 MR，目标分支是 develop，标题用最近一次 commit 的 subject，加上 backend 和 needs-review 两个 label",
+    "should_trigger": true
+  },
+  {
+    "query": "CI 又又又挂了，看下是哪个 job 失败的，把日志拉出来给我看看",
+    "should_trigger": true
+  },
+  {
+    "query": "我现在 reviewer 列表里堆了 8 个 MR，能不能用命令把它们都列出来按 updated_at 排序，最旧的先看",
+    "should_trigger": true
+  },
+  {
+    "query": "把 platform/infra/k8s-cluster 这个项目最近一周 merged 状态的 MR 拉个清单出来，要标题 + 作者 + 合并时间",
+    "should_trigger": true
+  },
+  {
+    "query": "我们准备搞一个 release-2026 的批量打 label 操作，platform group 下所有 opened MR 都要打上，写个脚本",
+    "should_trigger": true
+  },
+  {
+    "query": "git@gitlab.acme-corp.local:platform/infra/k8s-cluster.git 这个仓库我能克隆下来吗？token 怎么配",
+    "should_trigger": true
+  },
+  {
+    "query": "issue #42 我已经在另一个 PR 里修了，麻烦关一下，顺便加条评论说在 !158 已修复",
+    "should_trigger": true
+  },
+  {
+    "query": "merge 这个分支前我想等 pipeline 跑过再合，命令行有办法直接告诉它 pipeline 通过自动合吗",
+    "should_trigger": true
+  },
+  {
+    "query": "我刚改了 .gitlab-ci.yml 里的 stage，能不能本地先验证下语法不让它推上去再炸",
+    "should_trigger": true
+  },
+
+  {
+    "query": "帮我写个 Python 脚本调用 GitHub API 列我所有 starred 的 repo",
+    "should_trigger": false
+  },
+  {
+    "query": "用 gh pr create 提个 PR 怎么写命令，目标 main 分支，加 enhancement label",
+    "should_trigger": false
+  },
+  {
+    "query": "我们 Jenkins 流水线红了，看下哪一步失败的",
+    "should_trigger": false
+  },
+  {
+    "query": "git rebase 主分支的时候冲突了，怎么 abort 回到之前的状态",
+    "should_trigger": false
+  },
+  {
+    "query": "codeberg 上的项目要怎么用 CLI 提交 issue，类似 gh 那种工具有没有",
+    "should_trigger": false
+  },
+  {
+    "query": "我想在 Gitea 自建实例上做 PR 自动合并，有什么工具推荐",
+    "should_trigger": false
+  },
+  {
+    "query": "GitLab 的 Auto DevOps 功能怎么开启，是不是需要在项目 settings 里勾选什么",
+    "should_trigger": true
+  },
+  {
+    "query": "公司用的是 Bitbucket Cloud，怎么从命令行查我自己创建的 PR",
+    "should_trigger": false
+  },
+  {
+    "query": "Docker Hub 的 registry token 配置一下，让本地能 push 镜像",
+    "should_trigger": false
+  },
+  {
+    "query": "解释一下 GitLab CI 里 rules 和 only/except 的区别，应该用哪个",
+    "should_trigger": true
+  }
+]
